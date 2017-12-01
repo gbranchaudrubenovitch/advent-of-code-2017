@@ -1,2 +1,2 @@
 # advent-of-code-2017
-answers to some of the daily Advent of Code 2017 challenges, in golang.
+Go solution for the daily http://adventofcode.com/2017 challenges.
