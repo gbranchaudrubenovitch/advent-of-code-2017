@@ -4,11 +4,7 @@ type indexProducer func(int, int) int
 
 func day1Part1(input string) int {
 	takeTheNextOne := func(currentIndex int, length int) int {
-		if currentIndex < length-1 {
-			return currentIndex + 1
-		} else {
-			return 0
-		}
+		return (currentIndex + 1) % length
 	}
 
 	return loopAndSum(input, takeTheNextOne)
