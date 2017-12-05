@@ -4,19 +4,26 @@ import (
 	"testing"
 )
 
-func Test_d03p1_canBuildGridOf9Points(t *testing.T) {
+func Test_d03p1_canBuildGridOf25Points(t *testing.T) {
 	// Note: origin is at square 1
 	//	17  16  15  14  13
 	//	18   5   4   3  12
 	//	19   6   1   2  11
 	//	20   7   8   9  10
-	//	21  22  23---> ...
+	//	21  22  23  24  25
+
 	grid := day3SpiralSquaresUpTo(25)
 	assertPointEquals(grid[0], invalidPoint, t)
 	assertPointEquals(grid[1], point{0, 0}, t)
 	assertPointEquals(grid[2], point{1, 0}, t)
 	assertPointEquals(grid[3], point{1, 1}, t)
 	assertPointEquals(grid[4], point{0, 1}, t)
+	assertPointEquals(grid[5], point{-1, 1}, t)
+	assertPointEquals(grid[6], point{-1, 0}, t)
+	assertPointEquals(grid[7], point{-1, -1}, t)
+	assertPointEquals(grid[8], point{0, -1}, t)
+	assertPointEquals(grid[9], point{1, -1}, t)
+	assertPointEquals(grid[10], point{2, -1}, t)
 }
 
 func Test_d03p1_square1Needs0Step(t *testing.T) {
