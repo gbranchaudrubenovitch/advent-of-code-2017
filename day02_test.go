@@ -10,3 +10,10 @@ func Test_d02p1_spreadsheetChecksumIs18(t *testing.T) {
 								7 5 3
 								2 4 6 8`), 18, t)
 }
+
+func Test_d02p2_spreadsheetSumIs9(t *testing.T) {
+	assertEquals(
+		day2Part2(`	5 9 2 8
+								9 4 7 3
+								3 8 6 5`), 9, t)
+}

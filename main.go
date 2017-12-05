@@ -13,4 +13,5 @@ func main() {
 
 	fmt.Println("--- Day 2: Corruption Checksum ---")
 	fmt.Println(fmt.Sprintf("  1) checksum for the spreadsheet is %d", day2Part1(inputs.Day02)))
+	fmt.Println(fmt.Sprintf("  2) sum of each row's factors is %d", day2Part2(inputs.Day02)))
 }
