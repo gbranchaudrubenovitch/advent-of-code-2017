@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func assertEquals(actual int, expected int, t *testing.T) {
+func assertIntEquals(actual int, expected int, t *testing.T) {
 	if actual != expected {
 		t.Error("Expected", expected, "but got", actual)
 	}
