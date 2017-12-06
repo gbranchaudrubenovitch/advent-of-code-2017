@@ -24,5 +24,6 @@ func main() {
 
 	fmt.Println("--- Day 4: High-Entropy Passphrases ---")
 	fmt.Println(fmt.Sprintf("  1) # of valid passphrases is %d", day4Part1(inputs.Day04)))
+	fmt.Println(fmt.Sprintf("  2) # of valid passphrases under new policy is %d", day4Part2(inputs.Day04)))
 	fmt.Println()
 }
