@@ -26,14 +26,17 @@ func day3SpiralSquaresUpTo(finalSquare int) []point {
 	squares = append(squares, invalidPoint)
 	squares = append(squares, origin)
 
+	gridIsOccupiedAt := make(map[point]bool)
 	currentPoint := origin
 	currentDirection := right
+	gridIsOccupiedAt[currentPoint] = true
+
 	for i := 0; i < finalSquare; i++ {
 		thereWasCollision := false
 		originalDirection := currentDirection
 		candidatePoint := computeNextPoint(currentPoint, currentDirection)
 
-		for !gridIsFreeAt(candidatePoint, squares) {
+		for gridIsOccupiedAt[candidatePoint] {
 			thereWasCollision = true
 			currentDirection = computeNextDirectionAfterCollision(currentDirection)
 			candidatePoint = computeNextPoint(currentPoint, currentDirection)
@@ -46,6 +49,7 @@ func day3SpiralSquaresUpTo(finalSquare int) []point {
 		}
 
 		currentPoint = candidatePoint
+		gridIsOccupiedAt[currentPoint] = true
 		squares = append(squares, currentPoint)
 	}
 
@@ -83,13 +87,4 @@ func computeNextDirectionAfterCollision(currentDirection direction) direction {
 		return left
 	}
 	return down
-}
-
-func gridIsFreeAt(candidatePoint point, filledSquares []point) bool {
-	for _, p := range filledSquares {
-		if p == candidatePoint {
-			return false
-		}
-	}
-	return true
 }
