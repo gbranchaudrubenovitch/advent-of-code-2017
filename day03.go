@@ -5,6 +5,10 @@ import (
 )
 
 type point struct{ X, Y int }
+type square struct {
+	Coord point
+	Value int
+}
 type direction string
 
 var invalidPoint = point{math.MinInt32, math.MinInt32}
@@ -14,32 +18,39 @@ var left = direction("left")
 var right = direction("right")
 
 func day3Part1(lastSquare int) int {
-	squares := day3SpiralSquaresUpTo(lastSquare)
+	squares := day3SpiralSquaresUpTo(lastSquare, false)
 	theSquare := squares[lastSquare]
 
-	return intAbs(theSquare.X) + intAbs(theSquare.Y)
+	return intAbs(theSquare.Coord.X) + intAbs(theSquare.Coord.Y)
 }
 
-func day3SpiralSquaresUpTo(finalSquare int) []point {
-	origin := point{0, 0}
-	squares := make([]point, 0, finalSquare)
-	squares = append(squares, invalidPoint)
-	squares = append(squares, origin)
+func day3Part2(lastSquare int) int {
+	squares := day3SpiralSquaresUpTo(lastSquare, true)
+	return squares[len(squares)-1].Value
+}
 
-	gridIsOccupiedAt := make(map[point]bool)
-	currentPoint := origin
+func day3SpiralSquaresUpTo(finalSquare int, computeValueAndStopWhenSquareReached bool) []square {
+	startingSquare := square{point{0, 0}, 1}
+	squares := make([]square, 0, finalSquare)
+	squares = append(squares, square{invalidPoint, 0})
+	squares = append(squares, startingSquare)
+
+	currentSquare := startingSquare
 	currentDirection := right
-	gridIsOccupiedAt[currentPoint] = true
+
+	grid := make(map[point]int)
+	gridIsOccupied := func(s square) bool { return grid[s.Coord] > 0 }
+	grid[currentSquare.Coord] = currentSquare.Value
 
 	for i := 0; i < finalSquare; i++ {
 		thereWasCollision := false
 		originalDirection := currentDirection
-		candidatePoint := computeNextPoint(currentPoint, currentDirection)
+		candidateSquare := computeNextSquare(currentSquare, currentDirection)
 
-		for gridIsOccupiedAt[candidatePoint] {
+		for gridIsOccupied(candidateSquare) {
 			thereWasCollision = true
 			currentDirection = computeNextDirectionAfterCollision(currentDirection)
-			candidatePoint = computeNextPoint(currentPoint, currentDirection)
+			candidateSquare = computeNextSquare(currentSquare, currentDirection)
 		}
 
 		if thereWasCollision {
@@ -48,23 +59,34 @@ func day3SpiralSquaresUpTo(finalSquare int) []point {
 			currentDirection = computeNextDirection(originalDirection)
 		}
 
-		currentPoint = candidatePoint
-		gridIsOccupiedAt[currentPoint] = true
-		squares = append(squares, currentPoint)
+		currentSquare = candidateSquare
+		if computeValueAndStopWhenSquareReached {
+			grid[currentSquare.Coord] = computeValue(currentSquare.Coord, grid)
+		} else {
+			grid[currentSquare.Coord] = 1
+		}
+		currentSquare.Value = grid[currentSquare.Coord]
+
+		squares = append(squares, currentSquare)
+
+		if computeValueAndStopWhenSquareReached && currentSquare.Value > finalSquare {
+			return squares
+		}
 	}
 
 	return squares
 }
 
-func computeNextPoint(currentPoint point, nextDirection direction) point {
+func computeNextSquare(currentSquare square, nextDirection direction) square {
+	currentPoint := currentSquare.Coord
 	if nextDirection == up {
-		return point{currentPoint.X, currentPoint.Y + 1}
+		return square{point{currentPoint.X, currentPoint.Y + 1}, 0}
 	} else if nextDirection == left {
-		return point{currentPoint.X - 1, currentPoint.Y}
+		return square{point{currentPoint.X - 1, currentPoint.Y}, 0}
 	} else if nextDirection == down {
-		return point{currentPoint.X, currentPoint.Y - 1}
+		return square{point{currentPoint.X, currentPoint.Y - 1}, 0}
 	}
-	return point{currentPoint.X + 1, currentPoint.Y}
+	return square{point{currentPoint.X + 1, currentPoint.Y}, 0}
 }
 
 func computeNextDirection(currentDirection direction) direction {
@@ -87,4 +109,15 @@ func computeNextDirectionAfterCollision(currentDirection direction) direction {
 		return left
 	}
 	return down
+}
+
+func computeValue(location point, grid map[point]int) int {
+	return grid[point{location.X, location.Y + 1}] +
+		grid[point{location.X + 1, location.Y + 1}] +
+		grid[point{location.X + 1, location.Y}] +
+		grid[point{location.X + 1, location.Y - 1}] +
+		grid[point{location.X, location.Y - 1}] +
+		grid[point{location.X - 1, location.Y - 1}] +
+		grid[point{location.X - 1, location.Y}] +
+		grid[point{location.X - 1, location.Y + 1}]
 }
