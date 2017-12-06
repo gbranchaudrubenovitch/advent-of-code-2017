@@ -21,4 +21,8 @@ func main() {
 	fmt.Println(fmt.Sprintf("  1) # of steps required to carry data is %d", day3Part1(inputs.Day03)))
 	fmt.Println(fmt.Sprintf("  2) first bigger value written is %d", day3Part2(inputs.Day03)))
 	fmt.Println()
+
+	fmt.Println("--- Day 4: High-Entropy Passphrases ---")
+	fmt.Println(fmt.Sprintf("  1) # of valid passphrases is %d", day4Part1(inputs.Day04)))
+	fmt.Println()
 }
