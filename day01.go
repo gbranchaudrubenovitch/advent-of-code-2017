@@ -31,5 +31,3 @@ func loopAndSum(input string, nextIndex indexProducer) int {
 	}
 	return sum
 }
-
-func aToI(b byte) int { return int(b - '0') }

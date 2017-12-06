@@ -13,8 +13,11 @@ var down = direction("down")
 var left = direction("left")
 var right = direction("right")
 
-func day3Part1(input int) int {
-	return 0
+func day3Part1(lastSquare int) int {
+	squares := day3SpiralSquaresUpTo(lastSquare)
+	theSquare := squares[lastSquare]
+
+	return intAbs(theSquare.X) + intAbs(theSquare.Y)
 }
 
 func day3SpiralSquaresUpTo(finalSquare int) []point {

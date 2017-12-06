@@ -24,6 +24,7 @@ func Test_d03p1_canBuildGridOf25Points(t *testing.T) {
 	assertPointEquals(grid[8], point{0, -1}, t)
 	assertPointEquals(grid[9], point{1, -1}, t)
 	assertPointEquals(grid[10], point{2, -1}, t)
+	assertPointEquals(grid[25], point{2, -2}, t)
 }
 
 func Test_d03p1_square1Needs0Step(t *testing.T) {
@@ -31,8 +32,15 @@ func Test_d03p1_square1Needs0Step(t *testing.T) {
 }
 
 func Test_d03p1_square12Needs3Steps(t *testing.T) {
-	t.Skip("WIP")
 	assertIntEquals(day3Part1(12), 3, t)
+}
+
+func Test_d03p1_square23Needs2Steps(t *testing.T) {
+	assertIntEquals(day3Part1(23), 2, t)
+}
+
+func Test_d03p1_square1024Needs31Steps(t *testing.T) {
+	assertIntEquals(day3Part1(1024), 31, t)
 }
 
 func assertPointEquals(actual point, expected point, t *testing.T) {
