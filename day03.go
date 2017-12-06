@@ -4,18 +4,18 @@ import (
 	"math"
 )
 
+type direction int
 type point struct{ X, Y int }
 type square struct {
 	Coord point
 	Value int
 }
-type direction string
 
 var invalidPoint = point{math.MinInt32, math.MinInt32}
-var up = direction("up")
-var down = direction("down")
-var left = direction("left")
-var right = direction("right")
+var up = direction(0)
+var left = direction(1)
+var down = direction(2)
+var right = direction(3)
 
 func day3Part1(lastSquare int) int {
 	squares := day3SpiralSquaresUpTo(lastSquare, false)
@@ -90,25 +90,11 @@ func computeNextSquare(currentSquare square, nextDirection direction) square {
 }
 
 func computeNextDirection(currentDirection direction) direction {
-	if currentDirection == up {
-		return left
-	} else if currentDirection == left {
-		return down
-	} else if currentDirection == down {
-		return right
-	}
-	return up
+	return (currentDirection + 1) % 4
 }
 
 func computeNextDirectionAfterCollision(currentDirection direction) direction {
-	if currentDirection == up {
-		return right
-	} else if currentDirection == left {
-		return up
-	} else if currentDirection == down {
-		return left
-	}
-	return down
+	return (currentDirection - 1) % 4
 }
 
 func computeValue(location point, grid map[point]int) int {
