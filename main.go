@@ -26,4 +26,8 @@ func main() {
 	fmt.Println(fmt.Sprintf("  1) # of valid passphrases is %d", day4Part1(inputs.Day04)))
 	fmt.Println(fmt.Sprintf("  2) # of valid passphrases under new policy is %d", day4Part2(inputs.Day04)))
 	fmt.Println()
+
+	fmt.Println("--- Day 5: A Maze of Twisty Trampolines, All Alike ---")
+	fmt.Println(fmt.Sprintf("  1) # of steps to reach exit is %d", day5Part1(inputs.Day05)))
+	fmt.Println()
 }
