@@ -31,4 +31,8 @@ func main() {
 	fmt.Println(fmt.Sprintf("  1) # of steps to reach exit is %d", day5Part1(inputs.Day05)))
 	fmt.Println(fmt.Sprintf("  2) new # of steps to reach exit is %d", day5Part2(inputs.Day05)))
 	fmt.Println()
+
+	fmt.Println("--- Day 6: Memory Reallocation ---")
+	fmt.Println(fmt.Sprintf("  1) # of redistribution cycles is %d", day6Part1(inputs.Day06)))
+	fmt.Println()
 }
