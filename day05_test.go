@@ -19,3 +19,7 @@ func Test_d05p1_exitsIn3Steps(t *testing.T) {
 func Test_d05p1_exitsIn5Steps(t *testing.T) {
 	assertIntEquals(day5Part1("0\n3\n0\n1\n-3"), 5, t)
 }
+
+func Test_d05p2_exitsIn10Steps(t *testing.T) {
+	assertIntEquals(day5Part2("0\n3\n0\n1\n-3"), 10, t)
+}

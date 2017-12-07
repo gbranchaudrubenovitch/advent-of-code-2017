@@ -29,5 +29,6 @@ func main() {
 
 	fmt.Println("--- Day 5: A Maze of Twisty Trampolines, All Alike ---")
 	fmt.Println(fmt.Sprintf("  1) # of steps to reach exit is %d", day5Part1(inputs.Day05)))
+	fmt.Println(fmt.Sprintf("  2) new # of steps to reach exit is %d", day5Part2(inputs.Day05)))
 	fmt.Println()
 }
