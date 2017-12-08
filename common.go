@@ -1,6 +1,9 @@
 package main
 
-import "strconv"
+import (
+	"strconv"
+	"strings"
+)
 
 func aToI(b byte) int {
 	return int(b - '0')
@@ -13,6 +16,16 @@ func stringsContainingNumberToInts(numberStrings []string) []int {
 		numbers = append(numbers, number)
 	}
 	return numbers
+}
+
+func intSliceToString(values []int) string {
+	valuesText := []string{}
+	for i := range values {
+		number := values[i]
+		text := strconv.Itoa(number)
+		valuesText = append(valuesText, text)
+	}
+	return strings.Join(valuesText, " ")
 }
 
 func intAbs(val int) int {
