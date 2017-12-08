@@ -7,6 +7,19 @@ import (
 func day6Part1(input string) int {
 	banks := stringsContainingNumberToInts(strings.Fields(input))
 
+	count, _ := day6CountCycles(banks)
+	return count
+}
+
+func day6Part2(input string) int {
+	banks := stringsContainingNumberToInts(strings.Fields(input))
+
+	_, banksAtStartOfLoop := day6CountCycles(banks)
+	count, _ := day6CountCycles(banksAtStartOfLoop)
+	return count
+}
+
+func day6CountCycles(banks []int) (int, []int) {
 	previouslySeenBanks := make(map[string]bool)
 	previouslySeenBanks[intSliceToString(banks)] = true
 
@@ -17,12 +30,12 @@ func day6Part1(input string) int {
 
 		banksID := intSliceToString(banks)
 		if previouslySeenBanks[banksID] {
-			return cycleCount
+			return cycleCount, banks
 		}
 		previouslySeenBanks[banksID] = true
 	}
 
-	return -1
+	return -1, banks
 }
 
 func day6Redistribute(banks []int) []int {

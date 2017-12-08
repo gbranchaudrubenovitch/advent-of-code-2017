@@ -16,3 +16,7 @@ func Test_d06p1_canCountCycles(t *testing.T) {
 	assertIntEquals(day6Part1("0 2 7 0"), 5, t)
 	assertIntEquals(day6Part1("0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0"), 16, t)
 }
+
+func Test_d06p2_canCountSizeOfLoop(t *testing.T) {
+	assertIntEquals(day6Part2("0 2 7 0"), 4, t)
+}
