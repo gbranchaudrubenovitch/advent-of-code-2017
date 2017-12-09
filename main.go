@@ -36,4 +36,8 @@ func main() {
 	fmt.Println(fmt.Sprintf("  1) # of redistribution cycles is %d", day6Part1(inputs.Day06)))
 	fmt.Println(fmt.Sprintf("  2) # of cycles in loop is %d", day6Part2(inputs.Day06)))
 	fmt.Println()
+
+	fmt.Println("--- Day 7: Recursive Circus ---")
+	fmt.Println(fmt.Sprintf("  1) the bottom program is named %s", day7Part1(inputs.Day07)))
+	fmt.Println()
 }

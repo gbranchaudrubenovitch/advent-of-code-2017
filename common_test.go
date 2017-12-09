@@ -10,6 +10,12 @@ func assertIntEquals(actual int, expected int, t *testing.T) {
 	}
 }
 
+func assertStringEquals(actual string, expected string, t *testing.T) {
+	if actual != expected {
+		t.Error("Expected", expected, "but got", actual)
+	}
+}
+
 func assertIntSliceEquals(actual []int, expected []int, t *testing.T) {
 	if len(actual) != len(expected) {
 		t.Error("Expected 2 arrays of the same length, but got", expected, "and", actual)
