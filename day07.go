@@ -12,12 +12,27 @@ type tower struct {
 }
 
 func day7Part1(input string) string {
-	return "tknk"
+	towers := day7Parse(input)
+
+	allChildren := make(map[string]bool, 0)
+	for _, tower := range towers {
+		for _, child := range tower.children {
+			allChildren[child] = true
+		}
+	}
+
+	for name, _ := range towers {
+		if !allChildren[name] {
+			return name
+		}
+	}
+
+	return ""
 }
 
-func day7Parse(rawTowers string) []tower {
+func day7Parse(rawTowers string) map[string]tower {
 	lines := strings.Split(rawTowers, "\n")
-	towers := make([]tower, 0, len(lines))
+	towers := make(map[string]tower)
 
 	for _, l := range lines {
 		fields := strings.Fields(l)
@@ -26,7 +41,7 @@ func day7Parse(rawTowers string) []tower {
 		weight := day7ParseWeight(fields[1])
 		children := day7ParseChildren(fields)
 
-		towers = append(towers, tower{name, weight, children})
+		towers[name] = tower{name, weight, children}
 	}
 
 	return towers

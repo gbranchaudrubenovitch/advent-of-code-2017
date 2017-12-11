@@ -9,23 +9,19 @@ func Test_d07p1_canParseTowers(t *testing.T) {
 
 	assertIntEquals(len(towers), 2, t)
 
-	assertStringEquals(towers[0].name, "siyms", t)
-	assertStringEquals(towers[1].name, "jgtvhkv", t)
+	assertIntEquals(towers["siyms"].weight, 98, t)
+	assertIntEquals(towers["jgtvhkv"].weight, 1885, t)
 
-	assertIntEquals(towers[0].weight, 98, t)
-	assertIntEquals(towers[1].weight, 1885, t)
+	assertIntEquals(len(towers["siyms"].children), 0, t)
+	assertIntEquals(len(towers["jgtvhkv"].children), 3, t)
 
-	assertIntEquals(len(towers[0].children), 0, t)
-	assertIntEquals(len(towers[1].children), 3, t)
-
-	assertStringEquals(towers[1].children[0], "ykqcpiv", t)
-	assertStringEquals(towers[1].children[1], "gvupyd", t)
-	assertStringEquals(towers[1].children[2], "vuyxvq", t)
+	assertStringEquals(towers["jgtvhkv"].children[0], "ykqcpiv", t)
+	assertStringEquals(towers["jgtvhkv"].children[1], "gvupyd", t)
+	assertStringEquals(towers["jgtvhkv"].children[2], "vuyxvq", t)
 }
 
 func Test_d07p1_canFindBottomProgram(t *testing.T) {
-	bottomProgram := day7Part1(`
-		pbga (66)
+	bottomProgram := day7Part1(`pbga (66)
 		xhth (57)
 		ebii (61)
 		havc (66)
