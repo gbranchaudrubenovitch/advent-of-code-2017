@@ -21,7 +21,7 @@ func day7Part1(input string) string {
 		}
 	}
 
-	for name, _ := range towers {
+	for name := range towers {
 		if !allChildren[name] {
 			return name
 		}
