@@ -20,8 +20,8 @@ func Test_d07p1_canParseTowers(t *testing.T) {
 	assertStringEquals(towers["jgtvhkv"].children[2], "vuyxvq", t)
 }
 
-func Test_d07p1_canFindBottomProgram(t *testing.T) {
-	bottomProgram := day7Part1(`pbga (66)
+func Test_d07p1_canFindRootProgram(t *testing.T) {
+	nameOfRoot := day7Part1(`pbga (66)
 		xhth (57)
 		ebii (61)
 		havc (66)
@@ -34,7 +34,7 @@ func Test_d07p1_canFindBottomProgram(t *testing.T) {
 		ugml (68) -> gyxo, ebii, jptl
 		gyxo (61)
 		cntj (57)`)
-	assertStringEquals(bottomProgram, "tknk", t)
+	assertStringEquals(nameOfRoot, "tknk", t)
 }
 
 func Test_d07p2_canComputeWeightOfDisc(t *testing.T) {
