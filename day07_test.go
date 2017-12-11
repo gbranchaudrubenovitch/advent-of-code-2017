@@ -36,3 +36,9 @@ func Test_d07p1_canFindBottomProgram(t *testing.T) {
 		cntj (57)`)
 	assertStringEquals(bottomProgram, "tknk", t)
 }
+
+func Test_d07p2_canComputeWeightOfDisc(t *testing.T) {
+	towers := day7Parse("pbga (66)\nhavc (66)\nqoyq (66)\npadx (45) -> pbga, havc, qoyq")
+
+	assertIntEquals(day7ComputeWeight("padx", towers), 243, t)
+}

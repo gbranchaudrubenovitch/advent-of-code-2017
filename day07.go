@@ -13,7 +13,27 @@ type tower struct {
 
 func day7Part1(input string) string {
 	towers := day7Parse(input)
+	return day7FindRootProgramName(towers)
+}
 
+func day7Part2(input string) int {
+	return -1
+}
+
+func day7ComputeWeight(programName string, towers map[string]tower) int {
+	currentTower := towers[programName]
+	if len(currentTower.children) == 0 {
+		return currentTower.weight
+	}
+
+	weight := currentTower.weight
+	for _, child := range currentTower.children {
+		weight += day7ComputeWeight(child, towers)
+	}
+	return weight
+}
+
+func day7FindRootProgramName(towers map[string]tower) string {
 	allChildren := make(map[string]bool, 0)
 	for _, tower := range towers {
 		for _, child := range tower.children {
@@ -26,7 +46,6 @@ func day7Part1(input string) string {
 			return name
 		}
 	}
-
 	return ""
 }
 

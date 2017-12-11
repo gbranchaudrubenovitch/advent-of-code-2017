@@ -39,5 +39,6 @@ func main() {
 
 	fmt.Println("--- Day 7: Recursive Circus ---")
 	fmt.Println(fmt.Sprintf("  1) the bottom program is named %s", day7Part1(inputs.Day07)))
+	fmt.Println(fmt.Sprintf("  2) proper weight is %d", day7Part2(inputs.Day07)))
 	fmt.Println()
 }
